@@ -67,7 +67,7 @@ const Navbar = () => {
           <img src={LOGO} alt="" className="h-14 " />
           <div className="flex flex-col justify-center">
             <p className="text-md text-[#0b9444]">DISEASE</p>
-            <p className="text-sm text-[#0b9444]">Prediction System</p>
+            <p className="text-sm text-[#89c43f]">Prediction System</p>
           </div>
         </NavLink>
         <div className="lg:hidden">

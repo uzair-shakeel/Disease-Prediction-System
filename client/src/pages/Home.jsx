@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import hero from "../../public/Images/hero.gif";
 import { MdOutlinePersonSearch } from "react-icons/md";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
+import { TbRibbonHealth } from "react-icons/tb";
+import { MdOnlinePrediction } from "react-icons/md";
 
 const Home = () => {
   useEffect(() => {
@@ -22,10 +25,10 @@ const Home = () => {
               journey to better health with just a few clicks.
             </p>
             <div className="pt-8 ">
-              <button className="bg-[#0A6847] mr-4 py-3 px-5 text-white font-semibold rounded-lg">
+              <button className="bg-[#0b9444] mr-4 py-3 px-5 text-white font-semibold rounded-lg">
                 Test Now
               </button>
-              <button className="text-[#0A6847] border-[#0A6847] border-[1px] mr-4 py-3 px-5  font-semibold rounded-lg">
+              <button className="text-[#0b9444] border-[#0b9444] border-[1px] mr-4 py-3 px-5  font-semibold rounded-lg">
                 Learn More about us
               </button>
             </div>
@@ -44,8 +47,8 @@ const Home = () => {
         </p>
 
         <div className="grid grid-cols-4 gap-4 py-10">
-          <div className="border-[1px] border-[#F3CA52] flex flex-col items-center py-3 pt-8 px-5 rounded-lg">
-            <MdOutlinePersonSearch size={80} className="text-[#F3CA52]" />
+          <div className="relative border cursor-default border-[#89c43f] flex flex-col group items-center py-3 pt-8 px-5 rounded-lg overflow-hidden">
+            <MdOutlinePersonSearch size={80} className="text-[#89c43f]" />
             <h3 className="text-xl font-semibold ">Predictive Analytics</h3>
             <p className="text-sm pt-3 text-gray-700 ">
               Our Disease Prediction System harnesses cutting-edge predictive
@@ -53,18 +56,20 @@ const Home = () => {
               analysis methods to forecast potential health risks with
               remarkable accuracy.{" "}
             </p>
+            <div className="absolute top-[-300px] w-full h-full opacity-20 bg-[#89c43f] duration-500 group-hover:top-0"></div>
           </div>
-          <div className="border-[1px] border-[#F3CA52] flex flex-col items-center py-3 pt-8 px-5 rounded-lg  ">
-            <MdOutlinePersonSearch size={80} className="text-[#F3CA52]" />
+          <div className="relative border cursor-default border-[#89c43f] flex flex-col group items-center py-3 pt-8 px-5 rounded-lg overflow-hidden">
+            <MdOutlineHealthAndSafety size={80} className="text-[#89c43f]" />
             <h3 className="text-xl font-semibold">Health Assessment</h3>
             <p className="text-sm pt-3 text-gray-700">
               Experience a comprehensive health assessment like never before.
               Our system covers a wide spectrum of diseases and health
               conditions, ensuring thorough scrutiny of your well-being.
             </p>
+            <div className="absolute top-[-300px] w-full h-full opacity-20 bg-[#89c43f] duration-500 group-hover:top-0"></div>
           </div>
-          <div className="border-[1px] border-[#F3CA52] flex flex-col items-center py-3 pt-8 px-5 rounded-lg">
-            <MdOutlinePersonSearch size={80} className="text-[#F3CA52]" />
+          <div className="relative border cursor-default border-[#89c43f] flex flex-col group items-center py-3 pt-8 px-5 rounded-lg overflow-hidden">
+            <TbRibbonHealth size={80} className="text-[#89c43f]" />
             <h3 className="text-xl font-semibold">
               Personalized Recommendations
             </h3>
@@ -73,9 +78,10 @@ const Home = () => {
               your unique health profile. Our system utilizes sophisticated
               algorithms to analyze your data
             </p>
+            <div className="absolute top-[-300px] w-full h-full opacity-20 bg-[#89c43f] duration-500 group-hover:top-0"></div>
           </div>
-          <div className="relative border border-yellow-500 flex flex-col items-center py-3 pt-8 px-5 rounded-lg overflow-hidden">
-            <MdOutlinePersonSearch size={80} className="text-yellow-500" />
+          <div className="relative border cursor-default border-[#89c43f] flex flex-col group items-center py-3 pt-8 px-5 rounded-lg overflow-hidden">
+            <MdOnlinePrediction size={80} className="text-[#89c43f]" />
             <h3 className="text-xl font-semibold">Predictive Analytics</h3>
             <p className="text-sm pt-3 text-gray-700">
               Our Disease Prediction System harnesses cutting-edge predictive
@@ -83,7 +89,7 @@ const Home = () => {
               analysis methods to forecast potential health risks with
               remarkable accuracy.
             </p>
-            <div className="absolute top-0 left-0 w-full h-full bg-yellow-200 transition-all duration-500 transform translate-y-full opacity-0 group-hover:opacity-100"></div>
+            <div className="absolute top-[-300px] w-full h-full opacity-20 bg-[#89c43f] duration-500 group-hover:top-0"></div>
           </div>
         </div>
       </section>
