@@ -24,7 +24,7 @@ const Welcome = () => {
 
             <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-xl p-2">Let's Go to the</p>
-              <h1 className="text-5xl">Home</h1>
+              <h1 className="text-5xl font-semibold">Home Page</h1>
             </div>
           </motion.div>
         </Link>
@@ -36,12 +36,17 @@ const Welcome = () => {
             type: "tween",
             duration: 2,
           }}
-        ><div className="h-screen w-full">
-          <img src={img2} alt="" className="image object-cover w-full h-full" />
+        >
+          <div className="h-screen w-full">
+            <img
+              src={img2}
+              alt=""
+              className="image object-cover w-full h-full"
+            />
           </div>
           <div className="absolute font-light inset-0 cursor-pointer bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center transition-opacity duration-300">
             <p className="text-xl p-2">Try out the</p>
-            <h1 className="text-5xl">Prediction System</h1>
+            <h1 className="text-5xl font-semibold">Prediction System</h1>
           </div>
         </motion.div>
       </div>
