@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import hero from "../../public/Images/heroo.gif";
+import hero from "../../public/Images/hero.gif";
 import { MdOutlinePersonSearch } from "react-icons/md";
 
 const Home = () => {
