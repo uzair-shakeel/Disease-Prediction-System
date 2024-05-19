@@ -18,7 +18,7 @@ const Welcome = () => {
               duration: 2,
             }}
           >
-            <div className="h-full w-full">
+            <div className="h-screen w-full">
               <img src={img1} alt="" className="object-cover w-full h-full" />
             </div>
 
@@ -36,8 +36,9 @@ const Welcome = () => {
             type: "tween",
             duration: 2,
           }}
-        >
-          <img src={img2} alt="" className="image" />
+        ><div className="h-screen w-full">
+          <img src={img2} alt="" className="image object-cover w-full h-full" />
+          </div>
           <div className="absolute font-light inset-0 cursor-pointer bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center transition-opacity duration-300">
             <p className="text-xl p-2">Try out the</p>
             <h1 className="text-5xl">Prediction System</h1>

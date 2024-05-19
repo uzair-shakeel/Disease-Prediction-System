@@ -6,9 +6,8 @@ import Welcome from "../pages/Welcome.jsx";
 const Routers = () => {
   return (
     <Routes>
-      <Route path="/home" element={<Navigate to="/" />} />
-      <Route path="/" element={<Home />} />
-      <Route path="/welcome" element={<Welcome />} />
+      <Route path="/" element={<Navigate to="/welcome" />} />
+      <Route path="/home" element={<Home />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

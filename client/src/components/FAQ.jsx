@@ -1,15 +1,11 @@
-import { useState } from 'react';
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-
-const FAQ =() => {
-  const [openIndices, setOpenIndices] = useState([]);
-
-  const toggleFAQ = (index) => {
-    setOpenIndices((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
-  };
-
+export default function AccordionUsage() {
+  // Array of questions and answers
   const faqs = [
     {
       question: "What is the Disease Prediction System?",
@@ -44,9 +40,9 @@ const FAQ =() => {
       answer: "No, the Disease Prediction System is not designed for use in emergency situations. If you are experiencing a medical emergency, please seek immediate medical assistance by contacting emergency services or visiting the nearest hospital."
     }
   ];
-  
+
   return (
-    <section className="bg-white py-8 min-h-screen px-[8%] text-center max-w-[1025px] lg:px-16 px-[10px] mx-auto">
+    <section className="bg-[#eafeeb] py-8 min-h-screen px-[8%] text-center">
       <div className="flex flex-col items-center">
         <h1 className="text-3xl font-bold py-3">Frequently Asked Questions</h1>
         <p className="pb-8 w-[50%]">
@@ -54,61 +50,23 @@ const FAQ =() => {
           disease prediction service, data privacy, accuracy, and more.
         </p>
       </div>
-      <div className="space-y-4 w-full shadow-2xl py-5">
-          {faqs.map((faq, index) => (
-            <div key={index} className="bg-white rounded-lg transition-all duration-300 ease-in-out px-5">
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full py-2 text-left flex justify-between items-center focus:outline-none transition-all duration-300 ease-in-out"
-              >
-                <span className="font-bold">{faq.question}</span>
-                <span className="ml-4">
-                  {openIndices.includes(index) ? (
-                    <svg
-                      className="w-6 h-6 transition-transform transform rotate-180"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 15l7-7 7 7"
-                      ></path>
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-6 h-6 transition-transform transform rotate-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      ></path>
-                    </svg>
-                  )}
-                </span>
-              </button>
-              <div
-                className={`overflow-hidden transition-max-height duration-300 ease-in-out ${openIndices.includes(index) ? 'max-h-screen' : 'max-h-0'
-                  }`}
-              >
-                <div className="py-3 pb-8 border-b border-black text-md">
-                  <p>{faq.answer}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+
+      <div>
+        {faqs.map((faq, index) => (
+          <Accordion key={index}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`panel${index + 1}-content`}
+              id={`panel${index + 1}-header`}
+            >
+              <span className="font-semibold">{faq.question}</span>
+            </AccordionSummary>
+            <AccordionDetails>
+              {faq.answer}
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </div>
     </section>
   );
 }
-
-export default FAQ
