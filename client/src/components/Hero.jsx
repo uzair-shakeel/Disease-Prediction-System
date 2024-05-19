@@ -25,7 +25,8 @@ const Hero = () => {
           </div>
         </div>
         <div>
-          <img src={hero} alt="" />
+          {/* Apply the transformation style to mirror the image horizontally */}
+          <img src={hero} alt="" style={{ transform: "scaleX(-1)" }} />
         </div>
       </div>
     </section>
