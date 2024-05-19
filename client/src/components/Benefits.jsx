@@ -12,7 +12,7 @@ const Benefits = [
     { icon: FaNetworkWired, title: "Integration with EHR", description: "Seamlessly integrate with Electronic Health Records for better data management." },
   ];
 
-const App = () => {
+const Benefit = () => {
   return (
     <div className="container mx-auto px-8 py-24">
       <h1 className="text-3xl font-bold text-center mb-16 relative pt-20">Features & Benefits</h1>
@@ -29,4 +29,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Benefit;
