@@ -8,7 +8,7 @@ const Footer = () => {
     <footer class="text-white bg-[#0b9444] body-font">
     <div class="container px-5 pt-24 pb-10 mx-auto">
       <div class="flex flex-wrap md:text-left text-center order-first">
-      <div className="text-center flex flex-col md:w-1/3 w-full items-center pb-8">
+      <div className="text-center flex flex-col lg:w-1/3  w-full items-center pb-8">
       <div className='flex flex-col items-center'>
         <img src={logo} alt="" className="text-white h-24" />
         <h2 class=" title-font text-white text-2xl font-bold pt-5">
@@ -31,7 +31,7 @@ const Footer = () => {
           </nav>
           </div>
         </div>
-        <div class="lg:w-2/1 md:w-1/3 w-full px-4">
+        <div class="lg:w-1/3 md:w-full w-full px-4">
         <div className='flex flex-col items-center'>
           <h2 class="title-font font-bold text-white tracking-widest text-lg mb-8">Quick Links</h2>
           <nav class="list-none mb-10 space-y-4 font-normal">
