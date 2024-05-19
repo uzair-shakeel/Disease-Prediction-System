@@ -17,8 +17,8 @@ const TimeLine = () => {
       </p>
 
       <Timeline position="alternate">
-        <TimelineItem>
-          <TimelineOppositeContent>Input Data</TimelineOppositeContent>
+        <TimelineItem >
+          <TimelineOppositeContent fontSize='18px'>Input Data</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot color="primary" />
             <TimelineConnector />
@@ -32,7 +32,7 @@ const TimeLine = () => {
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent>Data Analysis</TimelineOppositeContent>
+          <TimelineOppositeContent fontSize='18px'>Data Analysis</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot color="secondary" />
             <TimelineConnector />
@@ -46,7 +46,7 @@ const TimeLine = () => {
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent>
+          <TimelineOppositeContent fontSize='18px'>
             Prediction Generation
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -63,7 +63,7 @@ const TimeLine = () => {
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent>
+          <TimelineOppositeContent fontSize='18px'>
             Personalized Recommendations
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -79,8 +79,8 @@ const TimeLine = () => {
             the individual user's needs and risk factors.
           </TimelineContent>
         </TimelineItem>
-        <TimelineItem>
-          <TimelineOppositeContent>
+        <TimelineItem >
+          <TimelineOppositeContent fontSize='18px'>
             User Feedback and Engagement
           </TimelineOppositeContent>
           <TimelineSeparator>
