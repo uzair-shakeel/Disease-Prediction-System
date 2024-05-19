@@ -9,7 +9,7 @@ const Information = () => {
   return (
     <div className="bg-[#0b9444] min-h-screen">
       <div className="flex items-center justify-center py-4">
-        <div className="flex justify-between border-[1px]  bg-white/50 shadow-md   border-[#19492d] rounded-lg backdrop-blur-md w-[90%] backdrop-filter">
+        <div className="flex justify-between border-[1px]  bg-white/50 shadow-md   border-[#19492d] rounded-lg backdrop-blur-md  backdrop-filter">
           <button
             onClick={() => handleActive("diabetes")}
             className={
