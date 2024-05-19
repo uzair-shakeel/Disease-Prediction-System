@@ -6,6 +6,7 @@ import { TbRibbonHealth } from "react-icons/tb";
 import { MdOnlinePrediction } from "react-icons/md";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Works from "../components/Works";
 
 const Home = () => {
   // useEffect(() => {
@@ -95,6 +96,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <Works />
 
       <section className="bg-gradient-to-tr from-white to-white min-h-screen px-[8%] ">
         <div className="grid grid-cols-2 gap-4">
