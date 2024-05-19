@@ -8,6 +8,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Timeline from "../components/Timeline";
 import FAQ from "../components/FAQ";
+import Benefits from "../components/Benefits";
 
 const Home = () => {
   // useEffect(() => {
@@ -100,6 +101,8 @@ const Home = () => {
 
       <Timeline />
 
+      <Benefits/>
+      
       <section className="bg-gradient-to-tr from-white to-white min-h-screen px-[8%] ">
         <div className="grid grid-cols-2 gap-4">
           <img src={hero} alt="" />
