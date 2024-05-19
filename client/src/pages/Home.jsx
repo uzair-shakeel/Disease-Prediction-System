@@ -7,6 +7,7 @@ import { MdOnlinePrediction } from "react-icons/md";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Timeline from "../components/Timeline";
+import FAQ from "../components/FAQ";
 
 const Home = () => {
   // useEffect(() => {
@@ -130,6 +131,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <FAQ />
     </>
   );
 };
