@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import asthma from "../../public/Images/asthma.png";
 import heart from "../../public/Images/heart.png";
 import diabetes from "../../public/Images/diabetes.png";
-import Blood from "../../public/Images/blood-cancer.jpg";
+import Blood from "../../public/Images/blood-cancer1.png";
 import brain from "../../public/Images/Brain_Cancer2.png";
 
 const Information = () => {
