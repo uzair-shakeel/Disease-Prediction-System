@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import LOGO from "../../public/Images/LOGO.png";
+import LOGO from "../../public/Images/logo.png";
 
 const Navbar = () => {
   const [active, setActive] = useState("Home");
@@ -253,7 +253,7 @@ const Navbar = () => {
               <li className="mb-1">
                 <NavLink
                   className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-[#0b9444] rounded"
-                  to="/"
+                  to="/prediction"
                 >
                   DIsease Prediction
                 </NavLink>
