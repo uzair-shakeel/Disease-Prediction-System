@@ -14,7 +14,7 @@ const Routers = () => {
       <Route path="/prediction" element={<DiseasePrediction />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/information" element={<Information />} />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   );
 };

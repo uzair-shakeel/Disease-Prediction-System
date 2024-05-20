@@ -91,7 +91,7 @@ const Navbar = () => {
                   : "text-sm text-gray-400 hover:text-[#89c43f]"
               }
               onClick={() => handleLinks("Home")}
-              to="/"
+              to="/home"
             >
               Home
             </NavLink>
@@ -122,7 +122,7 @@ const Navbar = () => {
               onClick={() => handleLinks("Prediction")}
               to="/prediction"
             >
-              DIsease Prediction
+              Disease Prediction
             </NavLink>
           </li>
           <li className="text-gray-300">
