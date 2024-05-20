@@ -1,7 +1,10 @@
 import React from 'react';
+import FAQ from "../components/FAQ";
+import Services from "../components/Services";
 
 const Support = () => {
   return (
+    <div>
     <section className="text-gray-600 body-font relative">
       <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
         <div className="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
@@ -63,8 +66,11 @@ const Support = () => {
           <p className="text-xs text-gray-500 mt-3">Chakiwara, Lyari, Karachi.</p>
         </div>
       </div>
-    </section>
+      </section>
+      <Services />
+      <FAQ />
+      </div>
   );
 };
 
-export default Support;
+export default Support

@@ -65,7 +65,7 @@ const Benefits = [
 
 const Benefit = () => {
   return (
-    <div className="container mx-auto px-8  pb-14">
+    <div className="container mx-auto px-8  pb-14 bg-gradient-to-t from-white to-[#eafeeb]">
       <div className="flex flex-col items-center pt-20 mb-16">
         <h1 className="text-3xl font-bold text-center  relative ">
           Features & Benefits

@@ -1,9 +1,10 @@
 import React from "react";
-import hero from "../../public/Images/hero.gif";
+import hero from "../../public/Images/disease.gif";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-br from-white to-[#eafeeb] min-h-screen px-[8%] flex items-center justify-center">
+    <section className=" min-h-screen px-[8%] flex items-center justify-center">
       <div className="grid items-center grid-cols-2 gap-4 ">
         <div className="">
           <h1 className="text-3xl font-bold py-3">
@@ -16,15 +17,21 @@ const Hero = () => {
             better health with just a few clicks.
           </p>
           <div className="pt-8 ">
-            <button className="bg-[#0b9444] mr-4 py-3 px-5 text-white font-semibold rounded-lg">
+            <Link
+              to="/prediction"
+              className="bg-[#0b9444] mr-4 py-3 px-5 text-white font-semibold rounded-lg"
+            >
               Test Now
-            </button>
-            <button className="text-[#0b9444] border-[#0b9444] border-[1px] mr-4 py-3 px-5  font-semibold rounded-lg">
+            </Link>
+            <Link
+              to="/about"
+              className="text-[#0b9444] border-[#0b9444] border-[1px] mr-4 py-3 px-5  font-semibold rounded-lg"
+            >
               Learn More about us
-            </button>
+            </Link>
           </div>
         </div>
-        <div>
+        <div className="flex items-center">
           {/* Apply the transformation style to mirror the image horizontally */}
           <img src={hero} alt="" style={{ transform: "scaleX(-1)" }} />
         </div>
