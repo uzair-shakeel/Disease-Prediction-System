@@ -5,6 +5,7 @@ import Welcome from "../pages/Welcome.jsx";
 import AboutUs from "../pages/About.jsx";
 import Information from "../pages/Information.jsx";
 import DiseasePrediction from "../pages/DiseasePrediction.jsx";
+import Support from "../pages/Support.jsx";
 
 const Routers = () => {
   return (
@@ -14,6 +15,7 @@ const Routers = () => {
       <Route path="/prediction" element={<DiseasePrediction />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/information" element={<Information />} />
+      <Route path="/support" element={<Support />} />
       <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   );

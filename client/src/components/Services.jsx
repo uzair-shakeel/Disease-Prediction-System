@@ -6,7 +6,7 @@ import { MdOnlinePrediction } from "react-icons/md";
 
 const Services = () => {
   return (
-    <section className="bg-gradient-to-tr from-white to-[#eafeeb] min-h-screen px-[8%] text-center">
+    <section className="bg-gradient-to-b from-white to-[#eafeeb] min-h-screen px-[8%] text-center">
       <h1 className="text-3xl font-bold py-3">Our Services</h1>
       <p>
         Empowering Health through Proactive Prediction: Your Partner in Disease

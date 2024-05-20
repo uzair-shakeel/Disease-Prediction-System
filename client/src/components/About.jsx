@@ -1,13 +1,15 @@
 import React from "react";
-import hero from "../../public/Images/hero.gif";
+import hero from "../../public/Images/about.gif";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <section className="bg-gradient-to-tr from-white to-white min-h-screen px-[8%] ">
-      <div className="grid grid-cols-2 gap-4">
-        <img src={hero} alt="" />
+    <section className="bg-gradient-to-tr from-white  flex items-center to-white min-h-screen px-[8%] ">
+      <div className="grid grid-cols-2 gap-4 items-center">
+        <div className="flex items-center justify-center">
+          <img src={hero} alt="" />
+        </div>
 
         <div className="flex px-[4%] flex-col items-start justify-center">
           <h1 className="text-3xl font-bold py-3">About Us</h1>
