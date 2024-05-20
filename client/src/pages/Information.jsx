@@ -3,7 +3,7 @@ import asthma from "../../public/Images/asthma.png";
 import heart from "../../public/Images/heart.png";
 import diabetes from "../../public/Images/diabetes.png";
 import Blood from "../../public/Images/blood-cancer.jpg";
-import brain from "../../public/Images/Brain_Cancer.png";
+import brain from "../../public/Images/Brain_Cancer2.png";
 
 const Information = () => {
   const [active, setActive] = useState("heart");
@@ -499,15 +499,16 @@ const Information = () => {
         )}
         {active === "brain" && (
           <div className="py-20 px-[8%] relative">
-            <div
-              className="absolute h-[100%] inset-0 bg-cover w-[50%] bg-center"
-              style={{
-                backgroundImage: `url(${brain})`,
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            ></div>
+          <div
+          className="absolute lg:h-[70%] md:h-[60%] inset-0 bg-cover lg:w-[70%] w-[90%] bg-center"
+          style={{
+              backgroundImage: `url(${brain})`,
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+          }}
+      ></div>
+      
             <div className="grid grid-cols-2 gap-20">
               <div>
                 <div className="border-[1px] max-w-[90%] py-5 px-8 bg-white/50 opacity-50  hover:opacity-100 duration-150 shadow-md   border-[#19492d] rounded-lg backdrop-blur-md  backdrop-filter">
