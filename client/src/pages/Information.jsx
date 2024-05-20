@@ -65,7 +65,7 @@ const Information = () => {
 
         <div className="py-8 px-[8%] relative  ">
           <div
-            className="absolute h-[60%] inset-0 bg-cover w-[50%] bg-center"
+            className="absolute h-[100%] inset-0 bg-cover w-[50%] bg-center"
             style={{
               backgroundImage: `url(${asthma})`,
               left: "50%",
