@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import asthma from "../../public/Images/asthma.png";
 import heart from "../../public/Images/heart.png";
-import diabetes from "../../public/Images/diabetes.webp";
+import diabetes from "../../public/Images/diabetes.png";
 import Blood from "../../public/Images/blood-cancer.jpg";
 import brain from "../../public/Images/Brain_Cancer.png";
 
@@ -68,7 +68,7 @@ const Information = () => {
           </button>
         </div>
         {active === "asthma" && (
-          <div className="py-8 px-[8%] relative">
+          <div className="py-20 px-[8%] relative">
             <div
               className="absolute h-[100%] inset-0 bg-cover w-[50%] bg-center"
               style={{
@@ -175,9 +175,9 @@ const Information = () => {
           </div>
         )}
         {active === "heart" && (
-          <div className="py-8 px-[8%] relative">
+          <div className="py-20 px-[8%] relative">
             <div
-              className="absolute h-[100%] inset-0 bg-cover w-[50%] bg-center"
+              className="absolute md:w-[100%] h-[70%] inset-0 bg-cover md:w-[55%] w-[80%] bg-center"
               style={{
                 backgroundImage: `url(${heart})`,
                 left: "50%",
@@ -286,9 +286,9 @@ const Information = () => {
           </div>
         )}
         {active === "diabetes" && (
-          <div className="py-8 px-[8%] relative">
+          <div className="py-20 px-[8%] relative">
             <div
-              className="absolute h-[100%] inset-0 bg-cover w-[50%] bg-center"
+              className="absolute h-[100%] inset-0 bg-cover w-[100%] bg-center"
               style={{
                 backgroundImage: `url(${diabetes})`,
                 left: "50%",
@@ -398,7 +398,7 @@ const Information = () => {
           </div>
         )}
         {active === "blood" && (
-          <div className="py-8 px-[8%] relative">
+          <div className="py-20 px-[8%] relative">
             <div
               className="absolute h-[100%] inset-0 bg-cover w-[50%] bg-center"
               style={{
@@ -499,7 +499,7 @@ const Information = () => {
           </div>
         )}
         {active === "brain" && (
-          <div className="py-8 px-[8%] relative">
+          <div className="py-20 px-[8%] relative">
             <div
               className="absolute h-[100%] inset-0 bg-cover w-[50%] bg-center"
               style={{
