@@ -1,305 +1,266 @@
-import React, { useState } from 'react';
-import './disease-prediction.css';
-import { Link } from 'react-router-dom';
-import LoginImg from '/public/Images/logo.png';
-import signupImg from '/public/Images/logo.png';
+import React, { useState } from "react";
+import "./disease-prediction.css";
+import { Link } from "react-router-dom";
+import LoginImg from "../../public/Images/newsletter.gif";
+import signupImg from "../../public/Images/hero.gif";
 
 const ProgressBar = ({ currentStep, totalSteps }) => {
-    // Define the array of icons
-    const icons = [
-        <i className="ri-lock-password-line"></i>,
-        <i class="ri-group-line"></i>,
-        <i className="ri-medal-line"></i>
-    ];
+  // Define the array of icons
+  const icons = [
+    <i className="ri-lock-password-line"></i>,
+    <i class="ri-group-line"></i>,
+    <i className="ri-medal-line"></i>,
+  ];
 
-    return (
-        <div className="progress-bar">
-            {icons.map((icon, index) => (
-                <div key={index} className="progress-step">
-                    {/* Checkpoint circle with icon */}
-                    <div className={`progress-checkpoint ${currentStep >= index + 1 ? 'active' : ''}`}>
-                        {icon}
-                    </div>
+  return (
+    <div className="progress-bar">
+      {icons.map((icon, index) => (
+        <div key={index} className="progress-step">
+          {/* Checkpoint circle with icon */}
+          <div
+            className={`progress-checkpoint ${
+              currentStep >= index + 1 ? "active" : ""
+            }`}
+          >
+            {icon}
+          </div>
 
-                    {/* Connector line */}
-                    {index < totalSteps - 1 && (
-                        <div className={`progress-connector ${currentStep > index + 1 ? 'completed' : ''}`}>
-                            {/* Connector Line */}
-                        </div>
-                    )}
-                </div>
-            ))}
+          {/* Connector line */}
+          {index < totalSteps - 1 && (
+            <div
+              className={`progress-connector ${
+                currentStep > index + 1 ? "completed" : ""
+              }`}
+            >
+              {/* Connector Line */}
+            </div>
+          )}
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
-
-
 const DiseasePrediction = () => {
-    // Define state for managing current form step and form data
-    const [currentStep, setCurrentStep] = useState(1);
-    const totalSteps = 3;
-    
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        confirmPassword: '',
-        firstName: '',
-        lastName: '',
-        phone:'',
-        address: '',
-        zipCode: '',
-        state: '',
-        city: '',
-        package: ''
-    });
+  // Define state for managing current form step and form data
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 3;
 
-    // Handle form data changes
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    address: "",
+    zipCode: "",
+    state: "",
+    city: "",
+    package: "",
+  });
 
-    // Handle form submission for sign-up
-    const handleSignUp = (e) => {
-        e.preventDefault();
-        // Add your sign-up logic here
-    };
+  // Handle form data changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    // Handle form submission for login
-    const handleSignIn = (e) => {
-        e.preventDefault();
-        // Add your sign-up logic here
-    };
+  // Handle form submission for sign-up
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    // Add your sign-up logic here
+  };
 
-    // Handle navigation to the next step
-    const handleNextStep = (e) => {
-        e.preventDefault();
-        if (currentStep < totalSteps) {
-            setCurrentStep(currentStep + 1);
-        } else {
-            handleSignUp(e);
-        }
-    };
+  // Handle form submission for login
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    // Add your sign-up logic here
+  };
 
-    // Handle navigation to the previous step
-    const handlePreviousStep = (e) => {
-        e.preventDefault();
-        if (currentStep > 1) {
-            setCurrentStep(currentStep - 1);
-        }
-    };
+  // Handle navigation to the next step
+  const handleNextStep = (e) => {
+    e.preventDefault();
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      handleSignUp(e);
+    }
+  };
 
-    // Toggle between Sign In and Sign Up forms
-    const toggleForm = () => {
-        const container = document.querySelector('.container');
-        container.classList.toggle('active');
-    };
+  // Handle navigation to the previous step
+  const handlePreviousStep = (e) => {
+    e.preventDefault();
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
 
-    return (
-        <section className="login-section">
-            <div className="container  shadow-lg">
-                <div className="user signinBx">
-                    <div class="imgBx">
-                        <img className="img-fluid" src={LoginImg} alt="Sign In Image" />
-                    </div>
-                    <div className="formBx">
-                        <form onSubmit={handleSignIn}>
-                            <h2>Sign In</h2>
-                            <input type="email" placeholder="Email" required />
-                            <input type="password" placeholder="Password" required />
-                            <button type="submit" className="btn btn-login mt-2">Login</button>
-                            <p className="signup">
-                                Don't have an account?{' '}
-                                <Link to="#" onClick={toggleForm}>Sign Up</Link>.
-                            </p>
-                        </form>
-                    </div>
-                </div>
-                <div className="user signupBx">
-    <div className="formBx flex-column">
-        <h2 className='text-center pt-1'>Create Account</h2>
-        {/* Integrate ProgressBar */}
-        <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+  // Toggle between Sign In and Sign Up forms
+  const toggleForm = () => {
+    const container = document.querySelector(".container");
+    container.classList.toggle("active");
+  };
 
-        {/* Multi-step form starts here */}
-        <div className={`form-step ${currentStep === 1 ? 'active' : ''}`}>
-            <form onSubmit={handleNextStep}>
-                <h2>Account Detail</h2>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                />
-                <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    required
-                />
-                <div className='d-flex justify-content-end'>
-                    <button type="submit" className="btn btn-next mt-1">Next</button>
+  return (
+    <section className="login-section">
+      <div className="container  shadow-lg">
+        <div className="user signinBx">
+          <div class="imgBx">
+            <img className="img-fluid" src={LoginImg} alt="Sign In Image" />
+          </div>
+          <div className="formBx">
+            <form onSubmit={handleSignIn}>
+              <h2>Subscribe NewsLetter</h2>
+              <input type="email" placeholder="Email" required />
+              {/* <input type="password" placeholder="Password" required /> */}
+              <button type="submit" className="btn btn-login mt-2">
+                Subscribe
+              </button>
+              <p className="signup">
+                Wanna get the prediction?{" "}
+                <Link to="#" onClick={toggleForm}>
+                  Predict your Disease
+                </Link>
+                .
+              </p>
+            </form>
+          </div>
+        </div>
+        <div className="user signupBx ">
+          <div className="formBx flex flex-col ">
+            <h2 className="text-center pt-1">Answer the following Questions</h2>
+            {/* Integrate ProgressBar */}
+            <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+
+            {/* Multi-step form starts here */}
+            <div className={`form-step ${currentStep === 1 ? "active" : ""}`}>
+              <form onSubmit={handleNextStep}>
+                <h2>Questions</h2>
+                <label htmlFor="">Age</label>
+                <input type="text" name="" placeholder="Answer" required />
+                <label htmlFor="">Gender</label>
+                <input type="text" name="" placeholder="Answer" required />
+                <label htmlFor="">Height</label>
+                <input type="text" name="" placeholder="Answer" required />
+                <label htmlFor="">Weight</label>
+                <input type="text" name="" placeholder="Answer" required />
+                <label htmlFor="">BMI</label>
+                <input type="text" name="" placeholder="Answer" required />
+
+                <div className="flex justify-end">
+                  <button type="submit" className="btn btn-next mt-1 py-3 px-7">
+                    Next
+                  </button>
                 </div>
                 <p className="signup">
-                    Already have an account?{' '}
-                    <Link to="#" onClick={toggleForm}>Sign In</Link>.
+                  Wanna hear from us?{" "}
+                  <Link to="#" onClick={toggleForm}>
+                    Newsletter
+                  </Link>
                 </p>
-            </form>
-        </div>
-
-        <div className={`form-step ${currentStep === 2 ? 'active' : ''}`}>
-            <form onSubmit={handleNextStep}>
-                <h2>Personal Information</h2>
-                <div className='d-flex gap-2'>
-                    <input
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <input
-                    type="number"
-                    name="phone"
-                    placeholder="Phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                />
-                <input
-                    type="text"
-                    name="address"
-                    placeholder="Address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    required
-                />
-                <input
-                    type="text"
-                    name="zipCode"
-                    placeholder="Zip Code"
-                    value={formData.zipCode}
-                    onChange={handleInputChange}
-                    required
-                />
-                <div className='d-flex flex-column flex-md-row gap-2'>
-                    <input
-                        type="text"
-                        name="city"
-                        placeholder="Town/City"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="state"
-                        placeholder="State"
-                        value={formData.state}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className='d-flex justify-content-between'>
-                    <button type="button" className="btn btn-back mt-1" onClick={handlePreviousStep}>
-                        Back
-                    </button>
-                    <button type="submit" className="btn btn-next mt-1">
-                        Next
-                    </button>
-                </div>
-                <p className="signup">
-                    Already have an account?{' '}
-                    <Link to="#" onClick={toggleForm}>Sign In</Link>.
-                </p>
-            </form>
-        </div>
-
-        <div className={`form-step overflow-y-auto ${currentStep === 3 ? 'active' : ''}`}>
-            <form onSubmit={handleSignUp} className='h-100 d-flex flex-column overflow-y-auto'>
-                <h2>Membership</h2>
-
-                {/* Define package options */}
-                <div className="package-grid">
-                    {[
-                        {
-                            name: 'Free Trial',
-                            description: 'Experience our service for free for 7 days.',
-                            price: '$0',
-                        },
-                        {
-                            name: 'Basic',
-                            description: 'This is a basic package offering limited features.',
-                            price: '$10',
-                        },
-                        {
-                            name: 'Premium',
-                            description: 'This package offers more features and options.',
-                            price: '$20',
-                        },
-                        {
-                            name: 'Deluxe',
-                            description: 'The deluxe package offers the most features and support.',
-                            price: '$30',
-                        },
-                    ].map((pkg, index) => (
-                        <div
-                            key={index}
-                            className={`package-option ${formData.package === pkg.name ? 'selected' : ''}`}
-                            onClick={() => setFormData({ ...formData, package: pkg.name })}
-                        >
-                            <h4 >{pkg.name}</h4>
-                            <p >{pkg.description}</p>
-                            <p className='p-0 mb-1 mt-0'>{pkg.price}</p>
-                        </div>
-                    ))}
-                </div>
-                <div className='d-flex justify-content-between'>
-                    <button type="button" className="btn btn-back mt-1" onClick={handlePreviousStep}>
-                        Back
-                    </button>
-                    <button type="submit" className="btn btn-submit mt-1">
-                        Submit
-                    </button>
-                </div>
-                <p className="signup">
-                    Already have an account?{' '}
-                    <Link to="#" onClick={toggleForm}>Sign In</Link>.
-                </p>
-            </form>
-        </div>
-    </div>
-    <div className="imgBx d-flex align-items-center justify-content-center mx-auto">
-        <img className="img-fluid" src={signupImg} alt="Sign Up Image" />
-    </div>
-</div>
-
+              </form>
             </div>
-        </section>
-    );
+
+            <div className={`form-step ${currentStep === 2 ? "active" : ""}`}>
+              <form onSubmit={handleNextStep}>
+                <h2>Round II</h2>
+                <div className="d-flex gap-2">
+                  <label htmlFor="">
+                    Do you have a family history of diabetes, heart disease,
+                    cancer, etc.?
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                  <label htmlFor="">
+                    Have you been diagnosed with any chronic diseases? If yes,
+                    specify.
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                  <label htmlFor="">
+                    Have you undergone any major surgeries? If yes, specify.
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                  <label htmlFor="">
+                    Are you currently taking any medications? If yes, specify.
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                  <label htmlFor="">
+                    Do you smoke? If yes, how many cigarettes per day?
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                </div>
+                <div className="flex justify-between">
+                  <button
+                    type="button"
+                    className="btn btn-back py-3 px-7 mt-1"
+                    onClick={handlePreviousStep}
+                  >
+                    Back
+                  </button>
+                  <button type="submit" className="btn btn-next py-3 px-7 mt-1">
+                    Next
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div
+              className={`form-step overflow-y-auto ${
+                currentStep === 3 ? "active" : ""
+              }`}
+            >
+              <form
+                onSubmit={handleSignUp}
+                className="h-100 d-flex flex-column overflow-y-auto"
+              >
+                <h2>Final Round</h2>
+                <div className="d-flex gap-2">
+                  <label htmlFor="">
+                    Do you drink alcohol? If yes, how often and how much?
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                  <label htmlFor="">
+                    How often do you exercise? What type of exercise do you
+                    engage in?
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                  <label htmlFor="">Describe your typical daily diet.</label>
+                  <input type="text" name="" placeholder="Answer" required />
+                  <label htmlFor="">
+                    Are you experiencing any of the following symptoms?
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                  <label htmlFor="">
+                    Have you noticed any recent changes in your health?
+                  </label>
+                  <input type="text" name="" placeholder="Answer" required />
+                </div>
+
+                <div className="flex justify-between">
+                  <button
+                    type="button"
+                    className="btn btn-back py-3 px-7 mt-1"
+                    onClick={handlePreviousStep}
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn btn-submit py-3 px-7 mt-1"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="imgBx d-flex align-items-center justify-content-center mx-auto">
+            <img className="img-fluid" src={signupImg} alt="Sign Up Image" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default DiseasePrediction;
