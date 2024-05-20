@@ -28,27 +28,29 @@ const Welcome = () => {
             </div>
           </motion.div>
         </Link>
-        <motion.div
-          className="relative group "
-          initial={{ y: -1500 }}
-          animate={{ y: 0 }}
-          transition={{
-            type: "tween",
-            duration: 2,
-          }}
-        >
-          <div className="h-screen w-full">
-            <img
-              src={img2}
-              alt=""
-              className="image object-cover w-full h-full"
-            />
-          </div>
-          <div className="absolute font-light inset-0 cursor-pointer bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center transition-opacity duration-300">
-            <p className="text-xl p-2">Try out the</p>
-            <h1 className="text-5xl font-semibold">Prediction System</h1>
-          </div>
-        </motion.div>
+        <Link to="/prediction">
+          <motion.div
+            className="relative group "
+            initial={{ y: -1500 }}
+            animate={{ y: 0 }}
+            transition={{
+              type: "tween",
+              duration: 2,
+            }}
+          >
+            <div className="h-screen w-full">
+              <img
+                src={img2}
+                alt=""
+                className="image object-cover w-full h-full"
+              />
+            </div>
+            <div className="absolute font-light inset-0 cursor-pointer bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center transition-opacity duration-300">
+              <p className="text-xl p-2">Try out the</p>
+              <h1 className="text-5xl font-semibold">Prediction System</h1>
+            </div>
+          </motion.div>
+        </Link>
       </div>
     </div>
   );
