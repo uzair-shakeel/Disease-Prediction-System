@@ -269,7 +269,7 @@ const Navbar = () => {
               <li className="mb-1">
                 <NavLink
                   className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-[#0b9444] rounded"
-                  to="/"
+                  to="/support"
                 >
                   Support
                 </NavLink>
