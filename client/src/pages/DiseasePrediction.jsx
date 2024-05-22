@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./disease-prediction.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import LoginImg from "../../public/Images/newsletter.gif";
 import signupImg from "../../public/Images/hero.gif";
 
@@ -8,7 +9,7 @@ const ProgressBar = ({ currentStep, totalSteps }) => {
   // Define the array of icons
   const icons = [
     <i className="ri-lock-password-line"></i>,
-    <i class="ri-group-line"></i>,
+    <i className="ri-group-line"></i>,
     <i className="ri-medal-line"></i>,
   ];
 
@@ -41,44 +42,60 @@ const ProgressBar = ({ currentStep, totalSteps }) => {
   );
 };
 
+const Tooltip = ({info}) =>{
+  return(
+    <div class="relative flex flex-col items-center group">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+    </svg>
+    <div class="absolute bottom-0 w-[150px] flex flex-col items-center hidden mb-5 group-hover:flex">
+      <span class="relative rounded-md z-10 p-3 text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg">
+      {info}
+      </span>
+      <div class="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+    </div>
+  </div>
+  )
+}
+
 const DiseasePrediction = () => {
-  // Define state for managing current form step and form data
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 3;
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-    phone: "",
-    address: "",
-    zipCode: "",
-    state: "",
-    city: "",
-    package: "",
+  const navigate = useNavigate();
+  
+  const [symptoms, setSymptoms] = useState({
+    age: "",
+    sex: "",
+    cp: "",
+    trestbps: "",
+    chol: "",
+    fbs: "",
+    restecg: "",
+    thalach: "",
+    exang: "",
+    oldpeak: "",
+    slope: "",
+    ca: "",
+    thal: "",
   });
 
-  // Handle form data changes
+  const [prediction, setPrediction] = useState(null);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setSymptoms({ ...symptoms, [name]: value });
   };
 
-  // Handle form submission for sign-up
   const handleSignUp = (e) => {
     e.preventDefault();
-    // Add your sign-up logic here
+    predictDisease(e);
   };
 
-  // Handle form submission for login
   const handleSignIn = (e) => {
     e.preventDefault();
     // Add your sign-up logic here
   };
 
-  // Handle navigation to the next step
   const handleNextStep = (e) => {
     e.preventDefault();
     if (currentStep < totalSteps) {
@@ -88,7 +105,6 @@ const DiseasePrediction = () => {
     }
   };
 
-  // Handle navigation to the previous step
   const handlePreviousStep = (e) => {
     e.preventDefault();
     if (currentStep > 1) {
@@ -96,24 +112,35 @@ const DiseasePrediction = () => {
     }
   };
 
-  // Toggle between Sign In and Sign Up forms
   const toggleForm = () => {
     const container = document.querySelector(".container");
     container.classList.toggle("active");
   };
 
+  const predictDisease = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:4000/api/predict", { symptoms })
+      .then((response) => {
+        setPrediction(response.data.result);
+        navigate('/heart-disease-result', { state: { prediction: response.data.result } });
+      })
+      .catch((error) => {
+        console.error("Error predicting disease:", error);
+      });
+  };
+
   return (
     <section className="login-section">
-      <div className="container  shadow-lg">
+      <div className="container shadow-lg active">
         <div className="user signinBx">
-          <div class="imgBx">
+          <div className="imgBx">
             <img className="img-fluid" src={LoginImg} alt="Sign In Image" />
           </div>
-          <div className="formBx">
+          <div className="formBx items-center justify-center">
             <form onSubmit={handleSignIn}>
               <h2>Subscribe NewsLetter</h2>
               <input type="email" placeholder="Email" required />
-              {/* <input type="password" placeholder="Password" required /> */}
               <button type="submit" className="btn btn-login mt-2">
                 Subscribe
               </button>
@@ -127,27 +154,86 @@ const DiseasePrediction = () => {
             </form>
           </div>
         </div>
-        <div className="user signupBx ">
-          <div className="formBx flex flex-col ">
+        <div className="user signupBx">
+          <div className="formBx flex flex-col">
+            <h1 className="text-center font-bold text-3xl">Heart Disease Prediction</h1>
             <h2 className="text-center pt-1">Answer the following Questions</h2>
-            {/* Integrate ProgressBar */}
             <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
-
-            {/* Multi-step form starts here */}
             <div className={`form-step ${currentStep === 1 ? "active" : ""}`}>
               <form onSubmit={handleNextStep}>
                 <h2>Questions</h2>
-                <label htmlFor="">Age</label>
-                <input type="text" name="" placeholder="Answer" required />
-                <label htmlFor="">Gender</label>
-                <input type="text" name="" placeholder="Answer" required />
-                <label htmlFor="">Height</label>
-                <input type="text" name="" placeholder="Answer" required />
-                <label htmlFor="">Weight</label>
-                <input type="text" name="" placeholder="Answer" required />
-                <label htmlFor="">BMI</label>
-                <input type="text" name="" placeholder="Answer" required />
-
+                <label className="flex items-center justify-between" htmlFor="age">
+                Age
+                <Tooltip info={<ul className="space-y-1">
+                <li> Age In Years </li>
+                </ul>}/>
+                </label>
+                <input
+                  type="number"
+                  name="age"
+                  placeholder="Answer"
+                  value={symptoms.age}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label className="flex items-center justify-between" htmlFor="sex">
+                Gender
+                <Tooltip info={<ul className="space-y-1">
+                <li> 0 = Female </li>
+                <li> 1 = Male </li>
+                </ul>}/>
+                </label>
+                
+                <input
+                  type="number"
+                  name="sex"
+                  placeholder="Answer"
+                  value={symptoms.sex}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label className="flex items-center justify-between" htmlFor="cp">
+                Chest Pain Type 
+                <Tooltip info={<ul className="space-y-1">
+                <li> 0: Typical angina </li>
+                <li> 1: Atypical angina </li>
+                <li> 2: Non-anginal pain </li>
+                <li> 3: Asymptomatic </li> </ul>}/>
+                </label>
+                <input
+                  type="number"
+                  name="cp"
+                  placeholder="Answer"
+                  value={symptoms.cp}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label className="flex items-center justify-between" htmlFor="trestbps">
+                Resting Blood Pressure
+                <Tooltip info={<ul className="space-y-1">
+                <li> Resting blood pressure (in mm Hg on admission to the hospital) </li></ul>}/>
+                </label>
+                <input
+                  type="number"
+                  name="trestbps"
+                  placeholder="Answer"
+                  value={symptoms.trestbps}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label className="flex items-center justify-between" htmlFor="chol">
+                Serum Cholesterol (in mg/dl)
+                <Tooltip info={<ul className="space-y-1">
+                <li> Serum Cholestoral in mg/dl </li></ul>}/>
+                </label>
+                <input
+                  type="number"
+                  name="chol"
+                  placeholder="Answer"
+                  value={symptoms.chol}
+                  onChange={handleInputChange}
+                  required
+                />
                 <div className="flex justify-end">
                   <button type="submit" className="btn btn-next mt-1 py-3 px-7">
                     Next
@@ -161,33 +247,82 @@ const DiseasePrediction = () => {
                 </p>
               </form>
             </div>
-
             <div className={`form-step ${currentStep === 2 ? "active" : ""}`}>
               <form onSubmit={handleNextStep}>
                 <h2>Round II</h2>
                 <div className="d-flex gap-2">
-                  <label htmlFor="">
-                    Do you have a family history of diabetes, heart disease,
-                    cancer, etc.?
+                  <label className="flex items-center justify-between" htmlFor="fbs">
+                  Fasting Blood Sugar
+                    <Tooltip info={<ul className="space-y-1">
+                    <li> 1 = True </li>
+                    <li> 0 = False </li>
+                    </ul>}/>
                   </label>
-                  <input type="text" name="" placeholder="Answer" required />
-                  <label htmlFor="">
-                    Have you been diagnosed with any chronic diseases? If yes,
-                    specify.
+                  <input
+                    type="number"
+                    name="fbs"
+                    placeholder="Answer"
+                    value={symptoms.fbs}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <label className="flex items-center justify-between" htmlFor="restecg">
+                  Resting Electrocardiographic Results
+                  <Tooltip info={<ul className="space-y-1">
+                    <li> 0: Normal </li>
+                    <li> 1: Having ST-T wave abnormality</li>
+                    <li> 2: Showing probable or definite left ventricular hypertrophy by Estes' criteria </li>
+                    </ul>}/>
                   </label>
-                  <input type="text" name="" placeholder="Answer" required />
-                  <label htmlFor="">
-                    Have you undergone any major surgeries? If yes, specify.
+                  <input
+                    type="number"
+                    name="restecg"
+                    placeholder="Answer"
+                    value={symptoms.restecg}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <label className="flex items-center justify-between" htmlFor="thalach">
+                  Maximum Heart Rate Achieved
+                  <Tooltip info={<ul className="space-y-1">
+                    <li> Maximum heart rate achieved </li> </ul>}/>
                   </label>
-                  <input type="text" name="" placeholder="Answer" required />
-                  <label htmlFor="">
-                    Are you currently taking any medications? If yes, specify.
+                  <input
+                    type="number"
+                    name="thalach"
+                    placeholder="Answer"
+                    value={symptoms.thalach}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <label className="flex items-center justify-between" htmlFor="exang">
+                    Exercise Induced Angina.
+                    <Tooltip info={<ul className="space-y-1">
+                    <li> 1 for Yes; </li> 
+                    <li> 0 for No; </li> 
+                    </ul>}/>
                   </label>
-                  <input type="text" name="" placeholder="Answer" required />
-                  <label htmlFor="">
-                    Do you smoke? If yes, how many cigarettes per day?
-                  </label>
-                  <input type="text" name="" placeholder="Answer" required />
+                  <input
+                    type="number"
+                    name="exang"
+                    placeholder="Answer"
+                    value={symptoms.exang}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <label className="flex items-center justify-between" htmlFor="oldpeak">
+                  ST Depression Induced by Exercise Relative to Rest
+                  <Tooltip info={<ul className="space-y-1">
+                  <li> ST Depression induced by exercise relative to rest </li> </ul>}/>
+                </label>
+                  <input
+                    type="number"
+                    name="oldpeak"
+                    placeholder="Answer"
+                    value={symptoms.oldpeak}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
                 <div className="flex justify-between">
                   <button
@@ -203,7 +338,6 @@ const DiseasePrediction = () => {
                 </div>
               </form>
             </div>
-
             <div
               className={`form-step overflow-y-auto ${
                 currentStep === 3 ? "active" : ""
@@ -211,31 +345,58 @@ const DiseasePrediction = () => {
             >
               <form
                 onSubmit={handleSignUp}
-                className="h-100 d-flex flex-column overflow-y-auto"
+                className="h-100 d-flex flex-column overflow-y-auto items-center justify-center"
               >
                 <h2>Final Round</h2>
                 <div className="d-flex gap-2">
-                  <label htmlFor="">
-                    Do you drink alcohol? If yes, how often and how much?
+                  <label className="flex items-center justify-between" htmlFor="slope">
+                  Slope of the Peak Exercise ST Segment
+                  <Tooltip info={<ul className="space-y-1">
+                    <li> 0: upsloping; </li> 
+                    <li> 1: flat; </li> 
+                    <li> 2: downsloping; </li> 
+                    </ul>}/>
                   </label>
-                  <input type="text" name="" placeholder="Answer" required />
-                  <label htmlFor="">
-                    How often do you exercise? What type of exercise do you
-                    engage in?
+                  <input
+                    type="number"
+                    name="slope"
+                    placeholder="Answer"
+                    value={symptoms.slope}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <label className="flex items-center justify-between" htmlFor="ca">
+                  Number of Major Vessels (0-3) Colored by Flourosopy
+                  <Tooltip info={<ul className="space-y-1">
+                    <li> Number of major vessels (0-3) colored by flourosopy</li> 
+                    </ul>}/>
                   </label>
-                  <input type="text" name="" placeholder="Answer" required />
-                  <label htmlFor="">Describe your typical daily diet.</label>
-                  <input type="text" name="" placeholder="Answer" required />
-                  <label htmlFor="">
-                    Are you experiencing any of the following symptoms?
+                  <input
+                    type="number"
+                    name="ca"
+                    placeholder="Answer"
+                    value={symptoms.ca}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <label className="flex items-center justify-between" htmlFor="thal">
+                  Thalassemia (3 for normal; 6 for fixed defect; 7 for reversible defect)
+                  <Tooltip info={<ul className="space-y-1">
+                    <li> 0 = error (in the original dataset 0 maps to NaN's); </li> 
+                    <li> 1 = fixed defect; </li> 
+                    <li> 2 = normal; </li> 
+                    <li> 3 = reversable defect; </li> 
+                    </ul>}/>
                   </label>
-                  <input type="text" name="" placeholder="Answer" required />
-                  <label htmlFor="">
-                    Have you noticed any recent changes in your health?
-                  </label>
-                  <input type="text" name="" placeholder="Answer" required />
+                  <input
+                    type="number"
+                    name="thal"
+                    placeholder="Answer"
+                    value={symptoms.thal}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
-
                 <div className="flex justify-between">
                   <button
                     type="button"
@@ -251,7 +412,7 @@ const DiseasePrediction = () => {
                     Submit
                   </button>
                 </div>
-              </form>
+                </form>
             </div>
           </div>
           <div className="imgBx d-flex align-items-center justify-content-center mx-auto">
