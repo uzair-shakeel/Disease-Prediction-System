@@ -120,12 +120,13 @@ const DiseasePrediction = () => {
   const predictDisease = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/api/predict", { symptoms })
+      .post("http://localhost:8000/api/predict", { symptoms })
       .then((response) => {
         setPrediction(response.data.result);
         navigate('/heart-disease-result', { state: { prediction: response.data.result } });
       })
       .catch((error) => {
+        alert("An Error Occured")
         console.error("Error predicting disease:", error);
       });
   };
