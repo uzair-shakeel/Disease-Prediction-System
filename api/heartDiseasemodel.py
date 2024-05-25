@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 import pickle
 
 # Step 1: Load the dataset
-data = pd.read_csv('heart.csv')
+data = pd.read_csv('heart (heart disease).csv')
 
 # Step 2: Prepare the data
 X = data.drop('target', axis=1)  # Features
